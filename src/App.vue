@@ -1,17 +1,26 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <b-container fluid class="bv-example-row">
+      <b-row>
+        <b-col>
+            <CheckBoxes></CheckBoxes>
+        </b-col>
+      </b-row>
+    </b-container>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+// import Coordinates from './components/Coordinates.vue';
+import CheckBoxes from './components/CheckBoxes.vue';
+// import Settings from './components/Settings.vue';
+// import Chart from './components/Chart.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    //Coordinates,
+    CheckBoxes,
+    //Settings,
+    //Chart,
   }
 }
 </script>
