@@ -98,18 +98,14 @@ export default {
 <style scoped>
  label {
    display: block;
-   align-self: left;
    justify-self: left;
 
  }
 
- #checkboxHourly {
-   display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
- }
 
- #checkboxDaily {
+
+ #checkboxHourly,  #checkboxDaily {
    display: grid;
-   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+   grid-template-columns: repeat(auto-fill, minmax(16rem, 2fr));
  }
 </style>

@@ -3,6 +3,7 @@
     <b-container fluid class="bv-example-row">
       <b-row>
         <b-col>
+            <Coordinates></Coordinates>
             <CheckBoxes></CheckBoxes>
         </b-col>
       </b-row>
@@ -10,14 +11,14 @@
   </div>
 </template>
 <script>
-// import Coordinates from './components/Coordinates.vue';
+ import Coordinates from './components/Coordinates.vue';
 import CheckBoxes from './components/CheckBoxes.vue';
 // import Settings from './components/Settings.vue';
 // import Chart from './components/Chart.vue';
 export default {
   name: 'App',
   components: {
-    //Coordinates,
+    Coordinates,
     CheckBoxes,
     //Settings,
     //Chart,
