@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <b-container fluid class="bv-example-row">
+    <b-container fluid="md">
       <b-row>
         <b-col>
             <Coordinates></Coordinates>
@@ -35,4 +35,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
+
+
 </style>

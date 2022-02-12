@@ -10,6 +10,7 @@
           <div class="mt-2">Lat: {{ latitude }} Long: {{longitude}}</div>
         </b-col>
         <b-col sm="6">
+
           <b-button @click="locateMe">Get location</b-button>
           <div v-if="errorStr">
             Sorry, but the following error
