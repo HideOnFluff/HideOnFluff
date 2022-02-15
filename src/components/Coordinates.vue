@@ -6,12 +6,12 @@
           <b-form-input v-model="latitude" placeholder="Latitude" type="number"></b-form-input>
         </b-col>
         <b-col sm="3">
-          <b-form-input @change="changeValues" v-model="longitude" placeholder="Longitude" type="number"></b-form-input>
+          <b-form-input v-model="longitude" placeholder="Longitude" type="number"></b-form-input>
           <div class="mt-2">Lat: {{ latitude }} Long: {{longitude}}</div>
         </b-col>
         <b-col sm="6">
 
-          <b-button @click="locateMe" @change="changeValues">Get location</b-button>
+          <b-button @click="locateMe">Get location</b-button>
           <div v-if="errorStr">
             Sorry, but the following error
             occurred: {{errorStr}}
@@ -35,8 +35,8 @@ export default {
   name: "Coordinates",
   data() {
     return {
-      latitude: '',
-      longitude: '',
+      latitude: 0,
+      longitude: 0,
       location:null,
       gettingLocation: false,
       errorStr:null
@@ -44,11 +44,6 @@ export default {
     }
   },
   methods:{
-
-  changeValues(){
-    this.latitude = location.coords.latitude;
-    this.longitude = location.coords.longitude;
-  },
 
     async getLocation() {
 
@@ -59,6 +54,8 @@ export default {
         }
 
         navigator.geolocation.getCurrentPosition(pos => {
+          this.latitude = pos.coords.latitude;
+          this.longitude = pos.coords.longitude;
           resolve(pos);
         }, err => {
           reject(err);
@@ -71,6 +68,7 @@ export default {
       try {
         this.gettingLocation = false;
         this.location = await this.getLocation();
+
       } catch(e) {
         this.gettingLocation = false;
         this.errorStr = e.message;
