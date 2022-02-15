@@ -1,6 +1,10 @@
 <template>
   <div>
     <b-container fluid>
+      <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+        Sorry, but the following error
+        occurred: {{errorStr}}
+      </b-alert>
       <b-row>
         <b-col sm="3">
           <b-form-input v-model="latitude" placeholder="Latitude" type="number"></b-form-input>
@@ -10,20 +14,9 @@
           <div class="mt-2">Lat: {{ latitude }} Long: {{longitude}}</div>
         </b-col>
         <b-col sm="6">
-
+          <b-form-select v-model="selected" :options="citiesPlaceholder"></b-form-select>
+          <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
           <b-button @click="locateMe">Get location</b-button>
-          <div v-if="errorStr">
-            Sorry, but the following error
-            occurred: {{errorStr}}
-          </div>
-
-          <div v-if="gettingLocation">
-            <i>Getting your location...</i>
-          </div>
-
-          <div v-if="location">
-            Your location data is {{ location.coords.latitude }}, {{ location.coords.longitude}}
-          </div>
         </b-col>
       </b-row>
     </b-container>
@@ -35,12 +28,20 @@ export default {
   name: "Coordinates",
   data() {
     return {
-      latitude: 0,
-      longitude: 0,
+      latitude: '',
+      longitude: '',
       location:null,
       gettingLocation: false,
-      errorStr:null
-
+      errorStr:null,
+      selected: null,
+      showDismissibleAlert: false,
+      citiesPlaceholder: [
+        { value: { latitude: '1', longitude: '1' }, text: 'City 1' },
+        { value: { latitude: '2', longitude: '2' }, text: 'City 2' },
+        { value: { latitude: '3', longitude: '3' }, text: 'City 3' },
+        { value: { latitude: '4', longitude: '4' }, text: 'City 4' },
+        { value: { latitude: '5', longitude: '5' }, text: 'City 5' },
+      ]
     }
   },
   methods:{
@@ -72,6 +73,7 @@ export default {
       } catch(e) {
         this.gettingLocation = false;
         this.errorStr = e.message;
+        this.showDismissibleAlert=true
       }
     }
   }
