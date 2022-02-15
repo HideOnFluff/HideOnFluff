@@ -1,6 +1,6 @@
 <template>
   <div>
-    <b-form-group label="Hourly Weather Variables" v-slot="{ ariaDescribedby }" label-size="lg" label-align-sm="left">
+    <b-form-group label="Hourly Weather Variables" v-slot="{ ariaDescribedby }" label-size="lg" label-align-sm="left" label->
       <b-form-checkbox-group
           id="checkboxHourly"
           v-model="selectedHourly"
@@ -77,7 +77,7 @@ export default {
           { text: 'Freezinglevel Height', value: 'freezinglevel_height' },
           { text: 'Vapor Pressure Deficit', value: 'vapor_pressure_deficit' },
           { text: 'Wind Gusts (10 m)', value: 'windgusts_10m' },
-          { text: 'Soil Moisture (27-81 cm)', value: 'soil_moisture_27_81cm' },
+          { text: 'Soil Moisture (27-81 cm)', value: 'soil_moisture_27_81cm' }
       ],
       optionsDaily:[
         { text: 'Weathercode', value: 'weathercode' },
@@ -98,14 +98,7 @@ export default {
         { text: 'Sunrise', value: 'sunrise' },
         { text: 'Shortwave Radiation Sum', value: 'shortwave_radiation_sum' },
 
-        { text: 'Sunset', value: 'sunset' },
-
-
-
-
-
-
-
+        { text: 'Sunset', value: 'sunset' }
       ]
       }
     }
@@ -114,7 +107,6 @@ export default {
 
 <style scoped>
  label {
-   font-weight-bold: pt-0;
    display: block;
    justify-self: left;
  }

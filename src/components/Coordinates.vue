@@ -6,12 +6,12 @@
           <b-form-input v-model="latitude" placeholder="Latitude" type="number"></b-form-input>
         </b-col>
         <b-col sm="3">
-          <b-form-input v-model="longitude" placeholder="Longitude" type="number"></b-form-input>
+          <b-form-input @change="changeValues" v-model="longitude" placeholder="Longitude" type="number"></b-form-input>
           <div class="mt-2">Lat: {{ latitude }} Long: {{longitude}}</div>
         </b-col>
         <b-col sm="6">
 
-          <b-button @click="locateMe">Get location</b-button>
+          <b-button @click="locateMe" @change="changeValues">Get location</b-button>
           <div v-if="errorStr">
             Sorry, but the following error
             occurred: {{errorStr}}
@@ -44,6 +44,12 @@ export default {
     }
   },
   methods:{
+
+  changeValues(){
+    this.latitude = location.coords.latitude;
+    this.longitude = location.coords.longitude;
+  },
+
     async getLocation() {
 
       return new Promise((resolve, reject) => {
@@ -61,7 +67,6 @@ export default {
       });
     },
     async locateMe() {
-
       this.gettingLocation = true;
       try {
         this.gettingLocation = false;
@@ -70,7 +75,6 @@ export default {
         this.gettingLocation = false;
         this.errorStr = e.message;
       }
-
     }
   }
 }
