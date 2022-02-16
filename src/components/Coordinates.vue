@@ -31,20 +31,22 @@ export default {
       latitude: '',
       longitude: '',
       location:null,
-      gettingLocation: false,
       errorStr:null,
       selected: null,
+      gettingLocation: false,
       showDismissibleAlert: false,
       citiesPlaceholder: [
-        { value: { latitude: '1', longitude: '1' }, text: 'City 1' },
-        { value: { latitude: '2', longitude: '2' }, text: 'City 2' },
-        { value: { latitude: '3', longitude: '3' }, text: 'City 3' },
-        { value: { latitude: '4', longitude: '4' }, text: 'City 4' },
-        { value: { latitude: '5', longitude: '5' }, text: 'City 5' },
+        { value: { lat: '1', long: '1' }, text: 'City 1' },
+        { value: { lat: '2', long: '2' }, text: 'City 2' },
+        { value: { lat: '3', long: '3' }, text: 'City 3' },
+        { value: { lat: '4', long: '4' }, text: 'City 4' },
+        { value: { lat: '5', long: '5' }, text: 'City 5' },
       ]
     }
   },
   methods:{
+
+
 
     async getLocation() {
 
