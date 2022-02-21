@@ -14,8 +14,7 @@
           <div class="mt-2">Lat: {{ latitude }} Long: {{longitude}}</div>
         </b-col>
         <b-col sm="6">
-          <b-form-select v-model="selected" :options="citiesPlaceholder"></b-form-select>
-          <div class="mt-3">Selected: <strong>{{ selected }}</strong></div>
+          <b-form-select v-on:change="optionsChanged" v-model="selected" :options="citiesPlaceholder"></b-form-select>
           <b-button @click="locateMe">Get location</b-button>
         </b-col>
       </b-row>
@@ -44,8 +43,23 @@ export default {
       ]
     }
   },
+  watch:{
+    //In Vue.js 3 you can watch two variables or parameters easily, but in Vue.js 2 I found it too
+    // overcomplicated for this simple task (sending two variables when they get updated),
+    // so this works enough.
+    latitude(newValue){
+      this.$emit('update:coords', newValue, this.longitude);
+    },
+    longitude(newValue){
+      this.$emit('update:coords', this.latitude, newValue);
+    }
+  },
   methods:{
 
+    optionsChanged: function (){
+      this.latitude = this.selected.lat;
+      this.longitude = this.selected.long;
+    },
 
 
     async getLocation() {

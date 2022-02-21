@@ -51,7 +51,7 @@ export default {
 
           { text: 'Apparent Temperature', value: 'apparent_temperature' },
           { text: 'Cloudcover High', value: 'cloudcover_high' },
-          { text: 'Wind Speed (180 m)', value: 'windspeed_120m' },
+          { text: 'Wind Speed (180 m)', value: 'windspeed_180m' },
           { text: 'Soil Temperature (54 cm)', value: 'soil_temperature_54cm' },
 
           { text: 'Sealevel Pressure', value: 'pressure_msl' },
@@ -101,7 +101,15 @@ export default {
         { text: 'Sunset', value: 'sunset' }
       ]
       }
-    }
+    },
+  watch:{
+    selectedHourly(newHourly){
+      this.$emit('update:parameters', newHourly, this.selectedDaily);
+    },
+    selectedDaily(newDaily){
+      this.$emit('update:parameters', this.selectedHourly, newDaily);
+    },
+  }
 }
 </script>
 
