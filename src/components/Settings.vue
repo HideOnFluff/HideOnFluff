@@ -39,7 +39,7 @@ export default {
         windspeed_unit: null,
         precipitation_unit: null,
         timeformat: null,
-        timezone: null,
+        timezone: 'UTC',
         past_days: null
       },
 
@@ -63,7 +63,7 @@ export default {
           {value: 'unixtime', text: 'Unix timestamp'}
         ],
         timezone: [
-          {value: null, text: 'UTC'},
+          {value: 'UTC', text: 'UTC'},
           {value: 'America/Anchorage', text: 'America/Anchorage'},
           {value: 'America/Los_Angeles', text: 'America/Los_Angeles'},
           {value: 'America/Denver', text: 'America/Denver'},

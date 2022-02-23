@@ -25,9 +25,8 @@
 
 
 - [ ] **Request**
-  - [ ] Preview data button
-  - [ ] Retrieve string data to App.vue
-  - [ ] Prepare request string
+  - [X] Retrieve string data to App.vue
+  - [X] Prepare request string
   - [x] Make the request (using axios)
   - [ ] Format request data for the chart API
   

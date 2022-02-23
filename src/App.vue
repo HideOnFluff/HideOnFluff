@@ -5,6 +5,7 @@
         <b-col>
             <Coordinates @update:coords="getCords"></Coordinates>
             <Settings @update:settings="getSettings"></Settings>
+            <hr>
             <CheckBoxes @update:parameters="getParameters"></CheckBoxes>
         </b-col>
       </b-row>
@@ -27,44 +28,79 @@ export default {
   },
   data() {
     return {
-      coordinates:{},
-      parameters:{},
-      settings:{}
+      REQUEST_DOMAIN: 'https://api.open-meteo.com/v1/forecast?',
+      query:'',
+      watching:{
+        coordinates:{},
+        parameters:{
+          hourly: [],
+          daily: []
+        },
+        settings:{}
+      }
+
     }
 
   },
+
+  watch:{
+
+    watching: {
+      handler(value) {
+          if (value.coordinates.latitude && value.coordinates.longitude){
+            if (this.query) this.query = '';
+              this.query = `latitude=${this.watching.coordinates.latitude}&longitude=${this.watching.coordinates.longitude}`;
+              if (this.watching.parameters){
+                console.log("here's the watching.parameters obj", this.watching.parameters)
+                if (this.watching.parameters.hourly.length>=1) this.query += `&hourly=${this.watching.parameters.hourly}`;
+                if (this.watching.parameters.daily.length>=1){
+                  this.query += `&daily=${this.watching.parameters.daily}`;
+                  if(!this.watching.settings.timezone) this.query += "&timezone=UTC";
+                      }
+
+            }
+            if (this.watching.settings){
+              for (const key in this.watching.settings){
+                if (this.watching.settings[key]) this.query += `&${key}=${this.watching.settings[key]}`;
+              }
+            }
+            console.log(this.query);
+
+          }
+          else console.log('im watching but I need coords')
+      },
+      deep: true
+    },
+
+    query(value){
+      axios.get(this.REQUEST_DOMAIN+value)
+          .then(response =>{
+            console.log(response.data)
+          })
+          .catch(error=>{
+            console.log(error.response)
+          })
+    }
+  },
+
   methods:{
       getCords(coordinates) {
-        this.coordinates = coordinates;
-        console.log(this.coordinates);
+        this.watching.coordinates = coordinates;
+        console.log(this.watching.coordinates);
       },
 
     getSettings(settings) {
-        this.settings = settings;
-        console.log(this.settings);
+        this.watching.settings = settings;
+        console.log(this.watching.settings);
     },
 
       getParameters(parameters) {
-       this.parameters = parameters;
-       console.log(this.parameters);
-    },
+       this.watching.parameters = parameters;
+       console.log(this.watching.parameters);
+    }
 
-      sendURL(){
-
-      },
-
-  },
-
-  mounted:
-      function request(){
-        axios.get('https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&hourly=temperature_2m,cloudcover_mid,cloudcover_high,shortwave_radiation&daily=winddirection_10m_dominant,shortwave_radiation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=ms&precipitation_unit=inch&timezone=America%2FChicago&past_days=1')
-         .then(response =>{
-           console.log(response.data)
-         })
-         .catch(error=>{
-          console.log(error.response)
-    })
   }
+
 }
 </script>
 
