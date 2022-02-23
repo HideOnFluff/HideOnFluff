@@ -6,6 +6,9 @@
             <Coordinates @update:coords="getCords"></Coordinates>
             <Settings @update:settings="getSettings"></Settings>
             <hr>
+            <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
+            <b-form-input v-model="query" readonly></b-form-input>
+            <small class="form-text text-muted">You can copy this API URL into your application.</small>
             <CheckBoxes @update:parameters="getParameters"></CheckBoxes>
         </b-col>
       </b-row>
@@ -28,8 +31,7 @@ export default {
   },
   data() {
     return {
-      REQUEST_DOMAIN: 'https://api.open-meteo.com/v1/forecast?',
-      query:'',
+      query:'https://api.open-meteo.com/v1/forecast?',
       watching:{
         coordinates:{},
         parameters:{
@@ -48,8 +50,8 @@ export default {
     watching: {
       handler(value) {
           if (value.coordinates.latitude && value.coordinates.longitude){
-            if (this.query) this.query = '';
-              this.query = `latitude=${this.watching.coordinates.latitude}&longitude=${this.watching.coordinates.longitude}`;
+            if (this.query !== 'https://api.open-meteo.com/v1/forecast?') this.query = 'https://api.open-meteo.com/v1/forecast?';
+              this.query += `latitude=${this.watching.coordinates.latitude}&longitude=${this.watching.coordinates.longitude}`;
               if (this.watching.parameters){
                 console.log("here's the watching.parameters obj", this.watching.parameters)
                 if (this.watching.parameters.hourly.length>=1) this.query += `&hourly=${this.watching.parameters.hourly}`;
@@ -73,7 +75,7 @@ export default {
     },
 
     query(value){
-      axios.get(this.REQUEST_DOMAIN+value)
+      axios.get(value)
           .then(response =>{
             console.log(response.data)
           })

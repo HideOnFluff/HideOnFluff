@@ -6,7 +6,6 @@
    - [ ] **Leaflet**
      - [ ] Add map
      - [ ] Change coordinates on-map click
-     - [ ] Make chart to update on-map click
      - [ ] Change map marker depending on the weather data
    - [x] Make GPS button replace Latitude and Longitude input values with its new coords
    - [x] Send data to app.vue
