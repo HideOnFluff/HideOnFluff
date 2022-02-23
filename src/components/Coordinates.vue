@@ -5,19 +5,20 @@
         Sorry, but the following error
         occurred: {{errorStr}}
       </b-alert>
-      <b-row>
-        <b-col sm="3">
-          <b-form-input v-model="latitude" placeholder="Latitude" type="number"></b-form-input>
-        </b-col>
-        <b-col sm="3">
-          <b-form-input v-model="longitude" placeholder="Longitude" type="number"></b-form-input>
-          <div class="mt-2">Lat: {{ latitude }} Long: {{longitude}}</div>
-        </b-col>
-        <b-col sm="6">
-          <b-form-select v-on:change="optionsChanged" v-model="selected" :options="citiesPlaceholder"></b-form-select>
-          <b-button @click="locateMe">Get location</b-button>
-        </b-col>
-      </b-row>
+        <b-row>
+
+        </b-row>
+        <b-row class="justify-content-center">
+          <b-col sm="4">
+            <b-form-input v-model="coordinates.latitude" placeholder="Latitude" type="number"></b-form-input>
+          </b-col>
+          <b-col sm="4">
+            <b-form-input v-model="coordinates.longitude" placeholder="Longitude" type="number"></b-form-input>
+          </b-col>
+          <b-col sm="1">
+            <b-button @click="locateMe" variant="outline-primary"><b-icon icon="geo-alt"></b-icon></b-button>
+          </b-col>
+        </b-row>
     </b-container>
   </div>
 </template>
@@ -27,41 +28,27 @@ export default {
   name: "Coordinates",
   data() {
     return {
-      latitude: '',
-      longitude: '',
+      coordinates:{
+        latitude: '',
+        longitude: ''
+      },
       location:null,
       errorStr:null,
       selected: null,
       gettingLocation: false,
       showDismissibleAlert: false,
-      citiesPlaceholder: [
-        { value: { lat: '1', long: '1' }, text: 'City 1' },
-        { value: { lat: '2', long: '2' }, text: 'City 2' },
-        { value: { lat: '3', long: '3' }, text: 'City 3' },
-        { value: { lat: '4', long: '4' }, text: 'City 4' },
-        { value: { lat: '5', long: '5' }, text: 'City 5' },
-      ]
     }
   },
   watch:{
-    //In Vue.js 3 you can watch two variables or parameters easily, but in Vue.js 2 I found it too
-    // overcomplicated for this simple task (sending two variables when they get updated),
-    // so this works enough.
-    latitude(newValue){
-      this.$emit('update:coords', newValue, this.longitude);
+    coordinates: {
+      handler(value){
+        this.$emit('update:coords', value);
+      },
+      deep: true
     },
-    longitude(newValue){
-      this.$emit('update:coords', this.latitude, newValue);
-    }
+
   },
   methods:{
-
-    optionsChanged: function (){
-      this.latitude = this.selected.lat;
-      this.longitude = this.selected.long;
-    },
-
-
     async getLocation() {
 
       return new Promise((resolve, reject) => {
@@ -71,8 +58,8 @@ export default {
         }
 
         navigator.geolocation.getCurrentPosition(pos => {
-          this.latitude = pos.coords.latitude;
-          this.longitude = pos.coords.longitude;
+          this.coordinates.latitude = pos.coords.latitude;
+          this.coordinates.longitude = pos.coords.longitude;
           resolve(pos);
         }, err => {
           reject(err);

@@ -1,24 +1,45 @@
-# second-iteration-vuejs
+# Second Iteration: Vue.js
 
-## Project setup
-```
-npm install
-```
+### To Do:
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+- [ ] **Coordinates**
+   - [ ] **Leaflet**
+     - [ ] Add map
+     - [ ] Change coordinates on-map click
+     - [ ] Make chart to update on-map click
+     - [ ] Change map marker depending on the weather data
+   - [x] Make GPS button replace Latitude and Longitude input values with its new coords
+   - [x] Send data to app.vue
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Lints and fixes files
-```
-npm run lint
-```
+- [x] **Parameters**
+  - [x] Hourly parameters
+  - [x] Daily parameters
+  - [x] Style
+  - [x] Send data to app.vue
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+
+- [X] **Settings**
+  - [X] Formatting selects
+  - [X] Current weather switch
+
+
+- [ ] **Request**
+  - [ ] Preview data button
+  - [ ] Retrieve string data to App.vue
+  - [ ] Prepare request string
+  - [x] Make the request (using axios)
+  - [ ] Format request data for the chart API
+  
+
+- [ ] **Vue-Chart.js**
+  - [ ] Get data from request to chart.vue
+  - [ ] Make chart Scrollable
+  - [ ] Personalize chart
+
+    
+- [ ] **Refine, Debug & Comment**
+
+    
+### Reference
+Check [Open Meteo](https://open-meteo.com/en/docs#api-documentation) to see what's the intended goal of this Iteration.

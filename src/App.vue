@@ -4,8 +4,8 @@
       <b-row>
         <b-col>
             <Coordinates @update:coords="getCords"></Coordinates>
+            <Settings @update:settings="getSettings"></Settings>
             <CheckBoxes @update:parameters="getParameters"></CheckBoxes>
-            <button @click="sendURL">Preview Data</button>
         </b-col>
       </b-row>
     </b-container>
@@ -13,43 +13,44 @@
 </template>
 <script>
  import Coordinates from './components/Coordinates.vue';
- import CheckBoxes from './components/CheckBoxes.vue';
+ import CheckBoxes from './components/Checkboxes.vue';
  import axios from "axios";
-// import Settings from './components/Settings.vue';
+import Settings from './components/Settings.vue';
 // import Chart from './components/Chart.vue';
 export default {
   name: 'App',
   components: {
     Coordinates,
     CheckBoxes,
-    //Settings,
+    Settings,
     //Chart,
   },
   data() {
     return {
-      latitude: '',
-      longitude: '',
-      hourlyArray: [],
-      dailyArray: [],
-
+      coordinates:{},
+      parameters:{},
+      settings:{}
     }
 
   },
   methods:{
-      getCords(lat, long) {
-        this.latitude = lat;
-        this.longitude = long;
+      getCords(coordinates) {
+        this.coordinates = coordinates;
+        console.log(this.coordinates);
       },
 
+    getSettings(settings) {
+        this.settings = settings;
+        console.log(this.settings);
+    },
 
-      getParameters(hourlyParam, dailyParam) {
-       this.hourlyArray = hourlyParam;
-        this.dailyArray = dailyParam;
-      console.log(this.hourlyArray, this.dailyArray);
+      getParameters(parameters) {
+       this.parameters = parameters;
+       console.log(this.parameters);
     },
 
       sendURL(){
-        console.log([this.hourlyArray, this.dailyArray, this.latitude, this.longitude])
+
       },
 
   },
