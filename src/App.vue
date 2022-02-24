@@ -4,6 +4,7 @@
       <b-row>
         <b-col>
             <Coordinates @update:coords="getCords"></Coordinates>
+            <chart v-bind:query="query"/>
             <Settings @update:settings="getSettings"></Settings>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
@@ -16,29 +17,29 @@
   </div>
 </template>
 <script>
- import Coordinates from './components/Coordinates.vue';
- import CheckBoxes from './components/Checkboxes.vue';
- import axios from "axios";
+import Coordinates from './components/Coordinates.vue';
+import CheckBoxes from './components/Checkboxes.vue';
 import Settings from './components/Settings.vue';
-// import Chart from './components/Chart.vue';
+import Chart from './components/Chart.vue';
 export default {
   name: 'App',
   components: {
     Coordinates,
     CheckBoxes,
     Settings,
-    //Chart,
+    Chart,
   },
   data() {
     return {
       query:'https://api.open-meteo.com/v1/forecast?',
       watching:{
         coordinates:{},
+        settings:{},
         parameters:{
           hourly: [],
           daily: []
-        },
-        settings:{}
+        }
+
       }
 
     }
@@ -53,7 +54,6 @@ export default {
             if (this.query !== 'https://api.open-meteo.com/v1/forecast?') this.query = 'https://api.open-meteo.com/v1/forecast?';
               this.query += `latitude=${this.watching.coordinates.latitude}&longitude=${this.watching.coordinates.longitude}`;
               if (this.watching.parameters){
-                console.log("here's the watching.parameters obj", this.watching.parameters)
                 if (this.watching.parameters.hourly.length>=1) this.query += `&hourly=${this.watching.parameters.hourly}`;
                 if (this.watching.parameters.daily.length>=1){
                   this.query += `&daily=${this.watching.parameters.daily}`;
@@ -69,36 +69,23 @@ export default {
             console.log(this.query);
 
           }
-          else console.log('im watching but I need coords')
+          else console.log('im watching but I need both coords')
       },
       deep: true
-    },
-
-    query(value){
-      axios.get(value)
-          .then(response =>{
-            console.log(response.data)
-          })
-          .catch(error=>{
-            console.log(error.response)
-          })
     }
   },
 
   methods:{
       getCords(coordinates) {
         this.watching.coordinates = coordinates;
-        console.log(this.watching.coordinates);
       },
 
     getSettings(settings) {
         this.watching.settings = settings;
-        console.log(this.watching.settings);
     },
 
       getParameters(parameters) {
        this.watching.parameters = parameters;
-       console.log(this.watching.parameters);
     }
 
   }

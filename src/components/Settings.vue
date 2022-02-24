@@ -1,9 +1,7 @@
 <template>
 <div>
   <b-container fluid aria-label="Hourly Weather Variables">
-    <b-row>
-      <b-form-checkbox v-model="selected.current_weather" name="check-button" switch>Current weather with temperature, windspeed and weather code</b-form-checkbox>
-    </b-row>
+
     <b-row>
       <b-col sm="4">
         <b-form-select v-model="selected.temperature_unit" :options="options.temperature_unit" size="sm" class="mt-3"></b-form-select>
@@ -24,6 +22,9 @@
         <b-form-select v-model="selected.past_days" :options="options.past_days" size="sm" class="mt-3"></b-form-select>
       </b-col>
     </b-row>
+    <b-row>
+    <b-form-checkbox v-model="selected.current_weather" name="check-button" switch>Current weather with temperature, windspeed and weather code</b-form-checkbox>
+  </b-row>
   </b-container>
 </div>
 </template>

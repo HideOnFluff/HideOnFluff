@@ -1,5 +1,9 @@
 # Second Iteration: Vue.js
 
+## Current State Preview: 
+
+![preview](https://i.imgur.com/B1Ecuwh.png)
+
 ### To Do:
 
 - [ ] **Coordinates**
@@ -23,15 +27,16 @@
   - [X] Current weather switch
 
 
-- [ ] **Request**
+- [X] **Request**
   - [X] Retrieve string data to App.vue
   - [X] Prepare request string
   - [x] Make the request (using axios)
-  - [ ] Format request data for the chart API
-  
 
 - [ ] **Vue-Chart.js**
-  - [ ] Get data from request to chart.vue
+  - [X] Get data from request
+  - [X] Format request data for the chart API
+  - [X] Generate Chart
+  - [ ] Update Chart Data
   - [ ] Make chart Scrollable
   - [ ] Personalize chart
 
