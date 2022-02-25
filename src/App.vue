@@ -4,7 +4,7 @@
       <b-row>
         <b-col>
             <Coordinates @update:coords="getCords"></Coordinates>
-            <chart v-bind:query="query"/>
+            <chart v-bind:query="query" width="3000"/>
             <Settings @update:settings="getSettings"></Settings>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
@@ -36,7 +36,9 @@ export default {
         coordinates:{},
         settings:{},
         parameters:{
-          hourly: [],
+          hourly: [
+
+          ],
           daily: []
         }
 

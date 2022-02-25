@@ -1,4 +1,3 @@
-
 <script>
 import axios from "axios";
 import { Line } from 'vue-chartjs'
@@ -8,43 +7,66 @@ export default {
   props: ['query'],
   data(){
     return{
+      gradient: null,
       data:{
         labels:[],
         datasets:[],
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false
+
       }
     }
   },
   watch:{
     query(value){
+      this.gradientGenerator();
+      this.data.datasets = [];
       axios.get(value)
           .then(response =>{
             this.data.labels = response.data.hourly.time;
             for (const key in response.data.hourly){
-              this.data.datasets.push({
-                label: key,
-                data: response.data.hourly[key],
-                    borderColor: 'rgb(75, 192, 192)',
-                fill: false,
-                pointStyle: 'line'
-              })
+              if (key!=='time') {
+                this.data.datasets.push({
+                  label: key,
+                  data: response.data.hourly[key],
+                  borderColor: 'rgba(0, 231, 255, 1)',
+                  pointBackgroundColor: 'white',
+                  pointBorderColor: 'white',
+                  backgroundColor: this.gradient,
+                })
+              }
             }
-              this.renderChart(this.data, this.options)
+            this.renderChart(this.data,{scales: {
+                x: {
+                  beginAtZero: true
+                }
+              },maintainAspectRatio: false});
           })
           .catch(error=>{
             console.log(error.response)
-          })
+          });
     },
       deep: true
     },
+  methods: {
+    gradientGenerator(){
+      this.gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
+      this.gradient.addColorStop(0, 'rgba(0, 231, 255, 0.9)')
+      this.gradient.addColorStop(0.5, 'rgba(0, 231, 255, 0.25)');
+      this.gradient.addColorStop(1, 'rgba(0, 231, 255, 0)');
+    }
+  },
+  mounted () {
+
+
+  }
 }
 
 
 </script>
 
 <style scoped>
-
+html{
+  overflow-x: scroll;
+}
 </style>
