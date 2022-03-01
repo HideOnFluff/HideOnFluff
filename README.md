@@ -10,7 +10,7 @@
    - [ ] **Leaflet**
      - [X] Add map
      - [X] Change coordinates on-map click
-     - [ ] Add map marker on clicked spot
+     - [X] Add map marker on clicked spot
      - [ ] Change map marker depending on the weather data
    - [x] Make GPS button replace Latitude and Longitude input values with its new coords
    - [x] Send data to app.vue

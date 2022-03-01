@@ -1,11 +1,11 @@
 <template>
   <div>
-    <b-container fluid>
+    <b-container fluid class="mb-4">
       <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
         Sorry, but the following error
         occurred: {{errorStr}}
       </b-alert>
-        <b-row class="mb-5">
+        <b-row class="mb-2">
           <leaflet @update:leafletCoords="getLeaflet"></leaflet>
         </b-row>
         <b-row class="justify-content-center">
