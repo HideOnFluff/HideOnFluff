@@ -1,30 +1,35 @@
 <template>
 <div>
-  <b-container fluid aria-label="Hourly Weather Variables">
-
-    <b-row>
-      <b-col sm="4">
-        <b-form-select v-model="selected.temperature_unit" :options="options.temperature_unit" size="sm" class="mt-3"></b-form-select>
+  <b-container class="mt-3" fluid aria-label="Hourly Weather Variables">
+    <b-row >
+      <b-col sm="6">
+        <b-form-checkbox v-model="settings.selected.current_weather" name="check-button" switch>Current weather with temperature, windspeed and weather code</b-form-checkbox>
       </b-col>
       <b-col sm="4">
-        <b-form-select v-model="selected.windspeed_unit" :options="options.windspeed_unit" size="sm" class="mt-3"></b-form-select>
-      </b-col >
-      <b-col sm="4">
-        <b-form-select v-model="selected.precipitation_unit" :options="options.precipitation_unit" size="sm" class="mt-3"></b-form-select>
-      </b-col>
-      <b-col sm="4">
-        <b-form-select v-model="selected.timeformat" :options="options.timeformat" size="sm" class="mt-3"></b-form-select>
-      </b-col>
-      <b-col sm="4">
-        <b-form-select v-model="selected.timezone" :options="options.timezone" size="sm" class="mt-3"></b-form-select>
-      </b-col>
-      <b-col sm="4">
-        <b-form-select v-model="selected.past_days" :options="options.past_days" size="sm" class="mt-3"></b-form-select>
+        <b-form-checkbox  v-model="settings.chartType" name="check-button" switch>Display daily data</b-form-checkbox>
       </b-col>
     </b-row>
     <b-row>
-    <b-form-checkbox v-model="selected.current_weather" name="check-button" switch>Current weather with temperature, windspeed and weather code</b-form-checkbox>
-  </b-row>
+      <b-col sm="4">
+        <b-form-select v-model="settings.selected.temperature_unit" :options="options.temperature_unit" size="sm" class="mt-3"></b-form-select>
+      </b-col>
+      <b-col sm="4">
+        <b-form-select v-model="settings.selected.windspeed_unit" :options="options.windspeed_unit" size="sm" class="mt-3"></b-form-select>
+      </b-col >
+      <b-col sm="4">
+        <b-form-select v-model="settings.selected.precipitation_unit" :options="options.precipitation_unit" size="sm" class="mt-3"></b-form-select>
+      </b-col>
+      <b-col sm="4">
+        <b-form-select v-model="settings.selected.timeformat" :options="options.timeformat" size="sm" class="mt-3"></b-form-select>
+      </b-col>
+      <b-col sm="4">
+        <b-form-select v-model="settings.selected.timezone" :options="options.timezone" size="sm" class="mt-3"></b-form-select>
+      </b-col>
+      <b-col sm="4">
+        <b-form-select v-model="settings.selected.past_days" :options="options.past_days" size="sm" class="mt-3"></b-form-select>
+      </b-col>
+    </b-row>
+
   </b-container>
 </div>
 </template>
@@ -34,15 +39,19 @@ export default {
   name: "Settings",
   data() {
     return {
-      selected:{
-        current_weather: null,
-        temperature_unit: null,
-        windspeed_unit: null,
-        precipitation_unit: null,
-        timeformat: null,
-        timezone: 'UTC',
-        past_days: null
+      settings:{
+        chartType: null,
+        selected:{
+          current_weather: null,
+          temperature_unit: null,
+          windspeed_unit: null,
+          precipitation_unit: null,
+          timeformat: null,
+          timezone: 'UTC',
+          past_days: null
+        }
       },
+
 
       options:{
         temperature_unit: [
@@ -90,7 +99,7 @@ export default {
     }
   },
   watch: {
-    selected: {
+    settings: {
       handler(value){
         this.$emit('update:settings', value);
       },

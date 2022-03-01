@@ -4,8 +4,8 @@
       <b-row>
         <b-col>
             <Coordinates @update:coords="getCords"></Coordinates>
-            <chart v-bind:query="query" width:3000/>
-            <Settings @update:settings="getSettings"></Settings>
+          <chart v-bind:chartData="chartData.response"/>
+            <Settings class="mt-4" @update:settings="getSettings"></Settings>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
             <b-form-input v-model="query" readonly></b-form-input>
@@ -21,6 +21,7 @@ import Coordinates from './components/Coordinates.vue';
 import CheckBoxes from './components/Checkboxes.vue';
 import Settings from './components/Settings.vue';
 import Chart from './components/Chart.vue';
+import axios from "axios";
 export default {
   name: 'App',
   components: {
@@ -36,13 +37,14 @@ export default {
         coordinates:{},
         settings:{},
         parameters:{
-          hourly: [
-
-          ],
+          hourly: [],
           daily: []
         }
-
-      }
+      },
+      chartData:{
+        chartType: null,
+        response: {},
+      },
 
     }
 
@@ -60,20 +62,27 @@ export default {
                 if (this.watching.parameters.daily.length>=1){
                   this.query += `&daily=${this.watching.parameters.daily}`;
                   if(!this.watching.settings.timezone) this.query += "&timezone=UTC";
-                      }
-
+                }
             }
             if (this.watching.settings){
               for (const key in this.watching.settings){
                 if (this.watching.settings[key]) this.query += `&${key}=${this.watching.settings[key]}`;
               }
             }
-            console.log(this.query);
-
           }
           else console.log('im watching but I need both coords')
       },
       deep: true
+    },
+    query(value) {
+      axios.get(value)
+          .then(response => {
+            this.chartData.response = response
+            console.log(this.chartData.response)
+          })
+          .catch(error => {
+            console.log(error.response)
+          });
     }
   },
 
@@ -83,7 +92,8 @@ export default {
       },
 
     getSettings(settings) {
-        this.watching.settings = settings;
+        this.watching.settings = settings.selected;
+        this.chartData.chartType = settings.chartType;
     },
 
       getParameters(parameters) {

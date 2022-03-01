@@ -5,8 +5,8 @@
         Sorry, but the following error
         occurred: {{errorStr}}
       </b-alert>
-        <b-row>
-
+        <b-row class="mb-5">
+          <leaflet @update:leafletCoords="getLeaflet"></leaflet>
         </b-row>
         <b-row class="justify-content-center">
           <b-col sm="4">
@@ -26,8 +26,12 @@
 </template>
 
 <script>
+import leaflet from './leaflet'
 export default {
   name: "Coordinates",
+  components:{
+    leaflet
+  },
   data() {
     return {
       coordinates:{
@@ -80,6 +84,11 @@ export default {
         this.errorStr = e.message;
         this.showDismissibleAlert=true
       }
+    },
+
+    getLeaflet(coords){
+      this.coordinates.latitude = coords.lat;
+      this.coordinates.longitude = coords.lng;
     }
   }
 }

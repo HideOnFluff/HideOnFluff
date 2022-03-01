@@ -2,14 +2,15 @@
 
 ## Current State Preview: 
 
-![preview](https://i.imgur.com/B1Ecuwh.png)
+![preview](https://i.imgur.com/bPZtmWL.png)
 
 ### To Do:
 
 - [ ] **Coordinates**
    - [ ] **Leaflet**
-     - [ ] Add map
-     - [ ] Change coordinates on-map click
+     - [X] Add map
+     - [X] Change coordinates on-map click
+     - [ ] Add map marker on clicked spot
      - [ ] Change map marker depending on the weather data
    - [x] Make GPS button replace Latitude and Longitude input values with its new coords
    - [x] Send data to app.vue
@@ -36,7 +37,8 @@
   - [X] Get data from request
   - [X] Format request data for the chart API
   - [X] Generate Chart
-  - [ ] Update Chart Data
+  - [X] Update Chart Data
+  - [ ] Add switch for hourly / daily parameters
   - [ ] Make chart Scrollable
   - [ ] Personalize chart
 
