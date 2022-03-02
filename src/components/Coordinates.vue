@@ -5,8 +5,9 @@
         Sorry, but the following error
         occurred: {{errorStr}}
       </b-alert>
-        <b-row class="mb-2">
+        <b-row class="mb-2 justify-content-center">
           <leaflet @update:leafletCoords="getLeaflet"></leaflet>
+          <small class="form-text text-muted">Click on the map to get exact coordinates. (Or input them manually on the fields below)</small>
         </b-row>
         <b-row class="justify-content-center">
           <b-col sm="4">

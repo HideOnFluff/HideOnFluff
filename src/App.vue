@@ -4,7 +4,7 @@
       <b-row>
         <b-col>
             <Coordinates @update:coords="getCords"></Coordinates>
-          <chart v-bind:chartData="chartData.response"/>
+            <chart v-bind:chartData="chartData.response"/>
             <Settings class="mt-4" @update:settings="getSettings"></Settings>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
@@ -98,8 +98,7 @@ export default {
 
       getParameters(parameters) {
        this.watching.parameters = parameters;
-    }
-
+    },
   }
 
 }

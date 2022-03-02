@@ -42,8 +42,9 @@
   - [ ] Make chart Scrollable
   - [ ] Personalize chart
 
-    
-- [ ] **Refine, Debug & Comment**
+
+- [ ] Add error alerts similar to 'Non geolocation access granted' on My Location button
+- [ ] **Refine, Debug & Comment code for easier understanding**
 
     
 ### Reference

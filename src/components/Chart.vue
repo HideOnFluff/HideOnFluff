@@ -49,9 +49,8 @@ export default {
       this.gradient.addColorStop(1, 'rgba(17, 130, 249, 0)');
     }
   },
-  mounted () {
-
-
+  mounted(){
+            this.renderChart(this.data, {responsive: true, maintainAspectRatio: false});
   }
 }
 

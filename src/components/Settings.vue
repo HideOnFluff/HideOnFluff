@@ -42,7 +42,7 @@ export default {
       settings:{
         chartType: null,
         selected:{
-          current_weather: null,
+          current_weather: true,
           temperature_unit: null,
           windspeed_unit: null,
           precipitation_unit: null,

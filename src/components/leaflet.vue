@@ -37,14 +37,13 @@ export default {
       }),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       zoom: 5,
-      center: [0, 0]
+      center: [56.8796, 24.6032]
     };
   },
   methods: {
     coordsOnClick(e) {
       this.$emit('update:leafletCoords', e.latlng);
       this.position = e.latlng;
-      //this.LMarker.setLatLng(e.latlng,{draggable:'true'}).bindPopup(e.latlng).update();
     }
   }
 }
