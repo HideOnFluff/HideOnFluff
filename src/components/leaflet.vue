@@ -73,9 +73,7 @@ export default {
     },
     leafletIcon(a){
         switch(a){
-          case 1:
-          case 2:
-          case 3:
+          case 0:
             this.icon = icon({
             iconUrl: require("../assets/weatherMapIcons/wi-day-sunny.svg"),
             iconSize: [41,41],
@@ -83,6 +81,17 @@ export default {
             iconRetinaUrl: null,
             shadowUrl: null
           })
+            break;
+          case 1:
+          case 2:
+          case 3:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-day-sunny-overcast.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
             break;
           case 48:
           case 45:
