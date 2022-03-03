@@ -4,17 +4,22 @@
     <l-marker
         v-if="position.lat && position.lng"
         visible
-        :icon="icon"
+        :zIndexOffset="20"
         :lat-lng.sync="position"
         @dragstart="dragging = true"
         @dragend="dragging = false"
     >
+      <l-icon
+          :icon-size=[41,41]
+          :icon-anchor=[1,1]
+          icon-url="https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62" >
+      </l-icon>
     </l-marker>
   </l-map>
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker, LIcon} from 'vue2-leaflet';
 import { icon } from "leaflet";
 
 export default {
@@ -22,6 +27,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+    LIcon,
   },
   data() {
     return {
@@ -44,7 +50,7 @@ export default {
     coordsOnClick(e) {
       this.$emit('update:leafletCoords', e.latlng);
       this.position = e.latlng;
-    }
+    },
   }
 }
 </script>

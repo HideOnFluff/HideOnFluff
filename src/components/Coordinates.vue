@@ -15,7 +15,7 @@
             <b-form-input v-model="coordinates.latitude" placeholder="Latitude" type="number"></b-form-input>
           </b-col>
           <b-col sm="4">
-            
+
             <b-form-input v-model="coordinates.longitude" placeholder="Longitude" type="number"></b-form-input>
           </b-col>
           <b-col sm="1">
