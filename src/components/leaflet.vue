@@ -6,20 +6,21 @@
         visible
         :zIndexOffset="20"
         :lat-lng.sync="position"
+        :icon="icon"
     >
-      <l-icon
-          :icon-size=[41,41]
-          :icon-anchor=[21,41]
-          icon-url="https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62"
-          shadow-url="null"
-      >
-      </l-icon>
+<!--      <l-icon-->
+<!--          :icon-size=[41,41]-->
+<!--          :icon-anchor=[21,41]-->
+<!--          icon-url="https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62"-->
+<!--          shadow-url="null"-->
+<!--      >-->
+<!--      </l-icon>-->
     </l-marker>
   </l-map>
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker, LIcon} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker,} from 'vue2-leaflet';
 import { icon } from "leaflet";
 
 export default {
@@ -30,7 +31,6 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LIcon,
   },
   data() {
     return {
@@ -67,13 +67,22 @@ export default {
     },
     leafletIcon(a){
         switch(a){
-          case 1: console.log('case 1')
+          case 3: this.icon = icon({
+            iconUrl: "https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62",
+            iconSize: [41,41],
+            iconAnchor: [21,41],
+            iconRetinaUrl: null,
+            shadowUrl: null
+          })
             break;
-          case 2: console.log('case 2')
-            break;
-          case 3: console.log('case 3')
-            break;
-          default: console.log('default')
+          default:
+            this.icon = icon({
+              iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+              iconUrl: require("leaflet/dist/images/marker-icon.png"),
+              shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+              iconSize: [25,41],
+              iconAnchor: [12.5,41],
+            })
         }
       }
   }
