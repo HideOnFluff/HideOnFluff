@@ -6,12 +6,12 @@
 
 ### To Do:
 
-- [ ] **Coordinates**
-   - [ ] **Leaflet**
+- [X] **Coordinates**
+   - [X] **Leaflet**
      - [X] Add map
      - [X] Change coordinates on-map click
      - [X] Add map marker on clicked spot
-     - [ ] Change map marker depending on the weather data
+     - [X] Change map marker depending on the weather data
    - [x] Make GPS button replace Latitude and Longitude input values with its new coords
    - [x] Send data to app.vue
 
