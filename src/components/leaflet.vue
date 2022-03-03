@@ -10,7 +10,9 @@
       <l-icon
           :icon-size=[41,41]
           :icon-anchor=[21,41]
-          icon-url="https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62" >
+          icon-url="https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62"
+          shadow-url="null"
+      >
       </l-icon>
     </l-marker>
   </l-map>
@@ -21,6 +23,9 @@ import {LMap, LTileLayer, LMarker, LIcon} from 'vue2-leaflet';
 import { icon } from "leaflet";
 
 export default {
+  props: {
+    response: {},
+  },
   components: {
     LMap,
     LTileLayer,
@@ -33,7 +38,7 @@ export default {
         lat: 40,
         lng: 20
       },
-      dragging:false,
+      mapIcon: "leaflet/dist/images/marker-icon.png",
       icon: icon({
         iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
         iconUrl: require("leaflet/dist/images/marker-icon.png"),
@@ -44,11 +49,33 @@ export default {
       center: [56.8796, 24.6032]
     };
   },
+  watch:{
+    response:{
+      handler() {
+        if(this.response.data.current_weather) {
+          this.leafletIcon(this.response.data.current_weather.weathercode);
+        }
+        else this.mapIcon = "leaflet/dist/images/marker-icon.png"
+      }
+    },
+    deep: true
+  },
   methods: {
     coordsOnClick(e) {
       this.$emit('update:leafletCoords', e.latlng);
       this.position = e.latlng;
     },
+    leafletIcon(a){
+        switch(a){
+          case 1: console.log('case 1')
+            break;
+          case 2: console.log('case 2')
+            break;
+          case 3: console.log('case 3')
+            break;
+          default: console.log('default')
+        }
+      }
   }
 }
 </script>

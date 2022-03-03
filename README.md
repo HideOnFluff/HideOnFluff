@@ -38,9 +38,9 @@
   - [X] Format request data for the chart API
   - [X] Generate Chart
   - [X] Update Chart Data
-  - [ ] Add switch for hourly / daily parameters
+  - [X] Add switch for hourly / daily parameters
   - [ ] Make chart Scrollable
-  - [ ] Personalize chart
+  - [X] Personalize chart
 
 
 - [ ] Add error alerts similar to 'Non geolocation access granted' on My Location button

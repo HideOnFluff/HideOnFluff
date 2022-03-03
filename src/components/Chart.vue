@@ -21,36 +21,8 @@ export default {
       handler(value) {
         this.gradientGenerator();
         this.data.datasets = [];
-        if (value.chartType){
-          this.data.labels = value.chartData.data.daily.time;
-          for (const key in value.chartData.data.daily) {
-            if (key !== 'time') {
-              this.data.datasets.push({
-                label: key,
-                data: value.chartData.data.daily[key],
-                borderColor: 'rgba(17, 130, 249, 1)',
-                pointBackgroundColor: 'white',
-                pointBorderColor: 'white',
-                backgroundColor: this.gradient,
-              })
-            }
-          }
-        }
-        else{
-          this.data.labels = value.chartData.data.hourly.time;
-          for (const key in value.chartData.data.hourly) {
-            if (key !== 'time') {
-              this.data.datasets.push({
-                label: key,
-                data: value.chartData.data.hourly[key],
-                borderColor: 'rgba(17, 130, 249, 1)',
-                pointBackgroundColor: 'white',
-                pointBorderColor: 'white',
-                backgroundColor: this.gradient,
-              })
-            }
-          }
-        }
+        if (value.chartType) this.chartDataGenerator(value.chartData.data.daily)
+        else this.chartDataGenerator(value.chartData.data.hourly)
         this.renderChart(this.data, {responsive: true, maintainAspectRatio: false});
       }
             },
@@ -62,6 +34,24 @@ export default {
       this.gradient.addColorStop(0, 'rgba(17, 130, 249, 0.9)')
       this.gradient.addColorStop(0.5, 'rgba(17, 130, 249, 0.25)');
       this.gradient.addColorStop(1, 'rgba(17, 130, 249, 0)');
+    },
+    chartDataGenerator(value){
+      if (value){
+        this.data.labels = value.time;
+        for (const key in value) {
+          if (key !== 'time') {
+            this.data.datasets.push({
+              label: key,
+              data: value[key],
+              borderColor: 'rgba(17, 130, 249, 1)',
+              pointBackgroundColor: 'white',
+              pointBorderColor: 'white',
+              backgroundColor: this.gradient,
+            })
+          }
+        }
+      }
+
     }
   },
   mounted(){

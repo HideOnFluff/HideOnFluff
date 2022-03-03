@@ -3,7 +3,7 @@
   <b-card header="Settings" class="mt-3" fluid aria-label="Hourly Weather Variables">
     <b-row >
       <b-col sm="6">
-        <b-form-checkbox v-model="settings.selected.current_weather" name="check-button" switch>Current weather with temperature, windspeed and weather code</b-form-checkbox>
+        <b-form-checkbox v-model="settings.selected.current_weather" name="check-button" switch>Current weather data (Marker dynamic icons)</b-form-checkbox>
       </b-col>
       <b-col sm="4">
         <b-form-checkbox  v-model="settings.chartType" name="check-button" switch>Display daily data</b-form-checkbox>

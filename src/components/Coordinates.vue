@@ -6,12 +6,14 @@
         occurred: {{errorStr}}
       </b-alert>
         <b-row class="mb-2 justify-content-center">
-          <leaflet @update:leafletCoords="getLeaflet"></leaflet>
+          <leaflet
+              @update:leafletCoords="getLeaflet"
+              v-bind:response="response"
+          ></leaflet>
           <small class="form-text text-muted">Click on the map to get exact coordinates. (Or input them manually on the fields below)</small>
         </b-row>
         <b-row class="justify-content-center">
           <b-col sm="4">
-
             <b-form-input v-model="coordinates.latitude" placeholder="Latitude" type="number"></b-form-input>
           </b-col>
           <b-col sm="4">
@@ -30,6 +32,9 @@
 import leaflet from './leaflet'
 export default {
   name: "Coordinates",
+  props: {
+    response: {},
+  },
   components:{
     leaflet
   },

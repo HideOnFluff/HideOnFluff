@@ -3,10 +3,13 @@
     <b-container fluid="md">
       <b-row>
         <b-col>
-            <Coordinates @update:coords="getCords"></Coordinates>
+            <Coordinates
+                @update:coords="getCords"
+                v-bind:response="response"
+            ></Coordinates>
             <chart
-                v-bind:chartData="chartData.response"
-                v-bind:chartType="chartData.chartType"
+                v-bind:chartData="response"
+                v-bind:chartType="chartType"
             />
             <Settings class="mt-4" @update:settings="getSettings"></Settings>
             <hr>
@@ -38,17 +41,16 @@ export default {
       query:'https://api.open-meteo.com/v1/forecast?',
       watching:{
         coordinates:{},
-        settings:{},
+        settings:{
+          current_weather: true,
+        },
         parameters:{
           hourly: [],
           daily: []
         }
       },
-      chartData:{
-        chartType: null,
-        response: {},
-      },
-
+      chartType: null,
+      response: {}
     }
 
   },
@@ -80,7 +82,7 @@ export default {
     query(value) {
       axios.get(value)
           .then(response => {
-            this.chartData.response = response
+            this.response = response
           })
           .catch(error => {
             console.log(error.response)
@@ -95,7 +97,7 @@ export default {
 
     getSettings(settings) {
         this.watching.settings = settings.selected;
-        this.chartData.chartType = settings.chartType;
+        this.chartType = settings.chartType;
     },
 
       getParameters(parameters) {
