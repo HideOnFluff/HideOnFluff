@@ -11,7 +11,7 @@
     >
       <l-icon
           :icon-size=[41,41]
-          :icon-anchor=[1,1]
+          :icon-anchor=[21,41]
           icon-url="https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62" >
       </l-icon>
     </l-marker>
