@@ -73,7 +73,9 @@ export default {
     },
     leafletIcon(a){
         switch(a){
-          case 1, 2, 3:
+          case 1:
+          case 2:
+          case 3:
             this.icon = icon({
             iconUrl: require("../assets/weatherMapIcons/wi-day-sunny.svg"),
             iconSize: [41,41],
@@ -82,7 +84,8 @@ export default {
             shadowUrl: null
           })
             break;
-          case 45, 48:
+          case 48:
+          case 45:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-fog.svg"),
               iconSize: [41,41],
@@ -91,8 +94,9 @@ export default {
               shadowUrl: null
             })
             break;
-
-          case 51, 53, 55:
+          case 53:
+          case 55:
+          case 51:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-sprinkle.svg"),
               iconSize: [41,41],
@@ -101,8 +105,8 @@ export default {
               shadowUrl: null
             })
             break;
-
-          case 56, 57:
+          case 56:
+          case 57:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-snowflake-cold.svg"),
               iconSize: [41,41],
@@ -111,8 +115,9 @@ export default {
               shadowUrl: null
             })
             break;
-
-          case 61, 63, 65:
+          case 65:
+          case 63:
+          case 61:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-rain.svg"),
               iconSize: [41,41],
@@ -122,8 +127,8 @@ export default {
             })
             break;
 
-
-          case 66,67:
+          case 67:
+          case 66:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-rain-mix.svg"),
               iconSize: [41,41],
@@ -132,8 +137,9 @@ export default {
               shadowUrl: null
             })
             break;
-
-          case 71,73,75:
+          case 73:
+          case 75:
+          case 71:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-snow.svg"),
               iconSize: [41,41],
@@ -152,8 +158,9 @@ export default {
               shadowUrl: null
             })
             break;
-
-          case 80,81,82:
+          case 81:
+          case 82:
+          case 80:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-storm-showers.svg"),
               iconSize: [41,41],
@@ -162,8 +169,8 @@ export default {
               shadowUrl: null
             })
             break;
-
-          case 85,86:
+          case 86:
+          case 85:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-showers.svg"),
               iconSize: [41,41],
@@ -172,7 +179,6 @@ export default {
               shadowUrl: null
             })
             break;
-
           case 95:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-thunderstorm.svg"),
@@ -182,8 +188,8 @@ export default {
               shadowUrl: null
             })
             break;
-
-          case 96,99:
+          case 99:
+          case 96:
             this.icon = icon({
               iconUrl: require("../assets/weatherMapIcons/wi-hail.svg"),
               iconSize: [41,41],
