@@ -1,6 +1,6 @@
 <template>
 <div>
-  <b-container class="mt-3" fluid aria-label="Hourly Weather Variables">
+  <b-card header="Settings" class="mt-3" fluid aria-label="Hourly Weather Variables">
     <b-row >
       <b-col sm="6">
         <b-form-checkbox v-model="settings.selected.current_weather" name="check-button" switch>Current weather with temperature, windspeed and weather code</b-form-checkbox>
@@ -10,8 +10,8 @@
       </b-col>
     </b-row>
     <b-row>
-      <b-col sm="4">
-        <b-form-select v-model="settings.selected.temperature_unit" :options="options.temperature_unit" size="sm" class="mt-3"></b-form-select>
+      <b-col sm="4" class="mt-3">
+        <b-form-select v-model="settings.selected.temperature_unit" :options="options.temperature_unit" size="sm" label:Temperature Unit></b-form-select>
       </b-col>
       <b-col sm="4">
         <b-form-select v-model="settings.selected.windspeed_unit" :options="options.windspeed_unit" size="sm" class="mt-3"></b-form-select>
@@ -30,7 +30,7 @@
       </b-col>
     </b-row>
 
-  </b-container>
+  </b-card>
 </div>
 </template>
 
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       settings:{
-        chartType: null,
+        chartType: false,
         selected:{
           current_weather: true,
           temperature_unit: null,

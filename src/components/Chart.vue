@@ -4,9 +4,8 @@ export default {
   extends: Line,
   name: "Chart",
   props: {
-    chartData: {
-      type: Object
-    },
+    chartData: {},
+    chartType: null
   },
   data(){
     return{
@@ -18,22 +17,38 @@ export default {
     }
   },
   watch:{
-    chartData:{
+    changeData:{
       handler(value) {
-        console.log(value)
         this.gradientGenerator();
         this.data.datasets = [];
-        this.data.labels = this.chartData.data.hourly.time;
-        for (const key in this.chartData.data.hourly) {
-          if (key !== 'time') {
-            this.data.datasets.push({
-              label: key,
-              data: this.chartData.data.hourly[key],
-              borderColor: 'rgba(17, 130, 249, 1)',
-              pointBackgroundColor: 'white',
-              pointBorderColor: 'white',
-              backgroundColor: this.gradient,
-            })
+        if (value.chartType){
+          this.data.labels = value.chartData.data.daily.time;
+          for (const key in value.chartData.data.daily) {
+            if (key !== 'time') {
+              this.data.datasets.push({
+                label: key,
+                data: value.chartData.data.daily[key],
+                borderColor: 'rgba(17, 130, 249, 1)',
+                pointBackgroundColor: 'white',
+                pointBorderColor: 'white',
+                backgroundColor: this.gradient,
+              })
+            }
+          }
+        }
+        else{
+          this.data.labels = value.chartData.data.hourly.time;
+          for (const key in value.chartData.data.hourly) {
+            if (key !== 'time') {
+              this.data.datasets.push({
+                label: key,
+                data: value.chartData.data.hourly[key],
+                borderColor: 'rgba(17, 130, 249, 1)',
+                pointBackgroundColor: 'white',
+                pointBorderColor: 'white',
+                backgroundColor: this.gradient,
+              })
+            }
           }
         }
         this.renderChart(this.data, {responsive: true, maintainAspectRatio: false});
@@ -51,6 +66,15 @@ export default {
   },
   mounted(){
             this.renderChart(this.data, {responsive: true, maintainAspectRatio: false});
+  },
+  computed: {
+    changeData() {
+      const {chartData, chartType} = this
+      return {
+        chartData,
+        chartType
+      }
+    }
   }
 }
 

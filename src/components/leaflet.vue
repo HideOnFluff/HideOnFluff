@@ -6,8 +6,6 @@
         visible
         :zIndexOffset="20"
         :lat-lng.sync="position"
-        @dragstart="dragging = true"
-        @dragend="dragging = false"
     >
       <l-icon
           :icon-size=[41,41]
@@ -56,5 +54,11 @@ export default {
 </script>
 
 <style scoped>
+.leaflet-grab {
+  cursor: auto;
+}
 
+.leaflet-dragging .leaflet-grab{
+  cursor: move;
+}
 </style>

@@ -4,7 +4,10 @@
       <b-row>
         <b-col>
             <Coordinates @update:coords="getCords"></Coordinates>
-            <chart v-bind:chartData="chartData.response"/>
+            <chart
+                v-bind:chartData="chartData.response"
+                v-bind:chartType="chartData.chartType"
+            />
             <Settings class="mt-4" @update:settings="getSettings"></Settings>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
@@ -78,7 +81,6 @@ export default {
       axios.get(value)
           .then(response => {
             this.chartData.response = response
-            console.log(this.chartData.response)
           })
           .catch(error => {
             console.log(error.response)
