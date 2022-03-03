@@ -17,7 +17,9 @@
     "leaflet": "^1.7.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
-    "vue2-leaflet": "^2.7.1"
+    "vue-weathericons": "^0.0.3",
+    "vue2-leaflet": "^2.7.1",
+    "weathericons": "^2.1.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

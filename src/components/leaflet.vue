@@ -22,7 +22,6 @@
 <script>
 import {LMap, LTileLayer, LMarker,} from 'vue2-leaflet';
 import { icon } from "leaflet";
-
 export default {
   props: {
     response: {},
@@ -31,6 +30,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
+
   },
   data() {
     return {
@@ -55,7 +55,13 @@ export default {
         if(this.response.data.current_weather) {
           this.leafletIcon(this.response.data.current_weather.weathercode);
         }
-        else this.mapIcon = "leaflet/dist/images/marker-icon.png"
+        else this.icon = icon({
+          iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+          iconUrl: require("leaflet/dist/images/marker-icon.png"),
+          shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
+          iconSize: [25,41],
+          iconAnchor: [12.5,41],
+        })
       }
     },
     deep: true
@@ -67,14 +73,126 @@ export default {
     },
     leafletIcon(a){
         switch(a){
-          case 3: this.icon = icon({
-            iconUrl: "https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62",
+          case 1, 2, 3:
+            this.icon = icon({
+            iconUrl: require("../assets/weatherMapIcons/wi-day-sunny.svg"),
             iconSize: [41,41],
             iconAnchor: [21,41],
             iconRetinaUrl: null,
             shadowUrl: null
           })
             break;
+          case 45, 48:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-fog.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 51, 53, 55:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-sprinkle.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 56, 57:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-snowflake-cold.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 61, 63, 65:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-rain.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+
+          case 66,67:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-rain-mix.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 71,73,75:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-snow.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 77:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-snow-wind.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 80,81,82:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-storm-showers.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 85,86:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-showers.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 95:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-thunderstorm.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
+          case 96,99:
+            this.icon = icon({
+              iconUrl: require("../assets/weatherMapIcons/wi-hail.svg"),
+              iconSize: [41,41],
+              iconAnchor: [21,41],
+              iconRetinaUrl: null,
+              shadowUrl: null
+            })
+            break;
+
           default:
             this.icon = icon({
               iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
