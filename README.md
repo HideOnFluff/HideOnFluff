@@ -2,7 +2,7 @@
 
 ## Current State Preview: 
 
-![preview](https://i.imgur.com/bPZtmWL.png)
+![preview](https://i.imgur.com/MPlEXLb.png)
 
 ### To Do:
 
@@ -39,6 +39,7 @@
   - [X] Generate Chart
   - [X] Update Chart Data
   - [X] Add switch for hourly / daily parameters
+  - [X] Add units labeling
   - [ ] Make chart Scrollable
   - [X] Personalize chart
 

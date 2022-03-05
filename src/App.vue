@@ -7,10 +7,12 @@
                 @update:coords="getCords"
                 v-bind:response="response"
             ></Coordinates>
-            <chart
-                v-bind:chartData="response"
-                v-bind:chartType="chartType"
-            />
+            <div>
+              <chart
+                  v-bind:chartData="response"
+                  v-bind:chartType="chartType" :height="300"
+              />
+            </div>
             <Settings class="mt-4" @update:settings="getSettings"></Settings>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>

@@ -1,5 +1,5 @@
 <template>
-  <l-map style="height: 50vh" :zoom="zoom" :center="center" @click="coordsOnClick">
+  <l-map style="height: 30vh" :zoom="zoom" :center="center" @click="coordsOnClick">
     <l-tile-layer :url="url"></l-tile-layer>
     <l-marker
         v-if="position.lat && position.lng"
@@ -8,13 +8,6 @@
         :lat-lng.sync="position"
         :icon="icon"
     >
-<!--      <l-icon-->
-<!--          :icon-size=[41,41]-->
-<!--          :icon-anchor=[21,41]-->
-<!--          icon-url="https://external-preview.redd.it/tUAgq_EQ0z2oSSqk4o-Y1Q1tFyU8JwUdVKG55H1KeWQ.jpg?auto=webp&s=234855d537ac827e85f1ee4319692f45947fdb62"-->
-<!--          shadow-url="null"-->
-<!--      >-->
-<!--      </l-icon>-->
     </l-marker>
   </l-map>
 </template>
