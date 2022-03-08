@@ -18,7 +18,7 @@ export default {
         scales: {
           yAxes: [],
         },
-        responsive: true,
+        responsive: false,
         maintainAspectRatio: false
       }
     }
@@ -31,10 +31,12 @@ export default {
         if (value.chartType){
           this.chartDataGenerator(value.chartData.data.daily);
           this.chartUnitsGenerator(value.chartData.data["daily_units"])
+          this.options.responsive = true;
         }
         else {
           this.chartDataGenerator(value.chartData.data.hourly)
           this.chartUnitsGenerator(value.chartData.data["hourly_units"])
+          this.options.responsive = false;
         }
 
         this.renderChart(this.data, this.options);

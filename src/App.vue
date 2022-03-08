@@ -8,10 +8,15 @@
                 v-bind:response="response"
             ></Coordinates>
             <div>
-              <chart
-                  v-bind:chartData="response"
-                  v-bind:chartType="chartType" :height="300"
-              />
+              <div class="scroll">
+                <chart
+                    :width="3000"
+                    :height="450"
+                    v-bind:chartData="response"
+                    v-bind:chartType="chartType"
+                />
+              </div>
+
             </div>
             <Settings class="mt-4" @update:settings="getSettings"></Settings>
             <hr>
@@ -120,6 +125,9 @@ export default {
   margin-top: 60px;
 }
 
-
+.scroll{
+  overflow-x: scroll;
+  white-space: nowrap;
+}
 
 </style>

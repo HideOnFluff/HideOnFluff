@@ -33,14 +33,14 @@
   - [X] Prepare request string
   - [x] Make the request (using axios)
 
-- [ ] **Vue-Chart.js**
+- [X] **Vue-Chart.js**
   - [X] Get data from request
   - [X] Format request data for the chart API
   - [X] Generate Chart
   - [X] Update Chart Data
   - [X] Add switch for hourly / daily parameters
   - [X] Add units labeling
-  - [ ] Make chart Scrollable
+  - [X] Make chart Scrollable
   - [X] Personalize chart
 
 
