@@ -19,14 +19,23 @@ export default {
           yAxes: [],
         },
         responsive: false,
-        maintainAspectRatio: false
+        maintainAspectRatio: false,
+        legend: {
+          align: 'start',
+        },
+        plugins: {
+          colorschemes: {
+            scheme: 'brewer.YlGnBu9'
+          }
+
+        }
       }
     }
   },
   watch:{
     changeData:{
       handler(value) {
-        this.gradientGenerator();
+        //this.gradientGenerator(); //Disabled since now I have a library for the colors yet I'd like to reimplement this in the future.
         this.data.datasets = [];
         if (value.chartType){
           this.chartDataGenerator(value.chartData.data.daily);
@@ -45,14 +54,12 @@ export default {
       deep: true
     },
   methods: {
-    gradientGenerator(){
-      //I'll try to optimize this. I've tried using a for loop with an array and use `rgba(17, 130, 249, ${element})` but didn't work at all.
-      // Since this is just a little detail I'll work on it at the end.
-      this.gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
-      this.gradient.addColorStop(0, 'rgba(17, 130, 249, 0.9)')
-      this.gradient.addColorStop(0.5, 'rgba(17, 130, 249, 0.25)');
-      this.gradient.addColorStop(1, 'rgba(17, 130, 249, 0)');
-    },
+    // gradientGenerator(){
+    //   this.gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
+    //   this.gradient.addColorStop(0, 'rgba(17, 130, 249, 0.9)')
+    //   this.gradient.addColorStop(0.5, 'rgba(17, 130, 249, 0.25)');
+    //   this.gradient.addColorStop(1, 'rgba(17, 130, 249, 0)');
+    // },
     chartDataGenerator(value){
       if (value){
         this.data.labels = value.time;
@@ -61,10 +68,8 @@ export default {
             this.data.datasets.push({
               label: key,
               data: value[key],
-              borderColor: 'rgba(17, 130, 249, 1)',
-              pointBackgroundColor: 'white',
-              pointBorderColor: 'white',
-              backgroundColor: this.gradient,
+              //borderColor: 'rgba(17, 130, 249, 1)',
+             // backgroundColor: this.gradient,
             })
           }
         }

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 import { LMap, LTileLayer, LMarker } from 'vue2-leaflet';
 import 'leaflet/dist/leaflet.css';
+import 'chartjs-plugin-colorschemes';
 
 Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
