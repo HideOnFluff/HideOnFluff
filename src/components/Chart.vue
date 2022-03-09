@@ -68,7 +68,7 @@ export default {
             this.data.datasets.push({
               label: key,
               data: value[key],
-              //borderColor: 'rgba(17, 130, 249, 1)',
+              fill: false
              // backgroundColor: this.gradient,
             })
           }
