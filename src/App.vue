@@ -11,7 +11,7 @@
               <div class="scroll">
                 <chart
                     :width="3000"
-                    :height="450"
+                    :height="400"
                     v-bind:chartData="response"
                     v-bind:chartType="chartType"
                 />
@@ -23,23 +23,23 @@
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
             <b-form-input v-model="query" readonly></b-form-input>
             <small class="form-text text-muted">You can copy this API URL into your application.</small>
-            <CheckBoxes @update:parameters="getParameters"></CheckBoxes>
+            <Checkboxes @update:parameters="getParameters"></Checkboxes>
         </b-col>
       </b-row>
     </b-container>
   </div>
 </template>
 <script>
-import Coordinates from './components/Coordinates.vue';
-import CheckBoxes from './components/Checkboxes.vue';
-import Settings from './components/Settings.vue';
-import Chart from './components/Chart.vue';
+import Coordinates from './components/Coordinates';
+import Checkboxes from './components/Checkboxes';
+import Settings from './components/Settings';
+import Chart from './components/Chart';
 import axios from "axios";
 export default {
   name: 'App',
   components: {
     Coordinates,
-    CheckBoxes,
+    Checkboxes,
     Settings,
     Chart,
   },

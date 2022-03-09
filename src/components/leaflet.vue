@@ -13,17 +13,17 @@
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker,} from 'vue2-leaflet';
+import {LMap, LTileLayer, LMarker} from 'vue2-leaflet';
 import { icon } from "leaflet";
 export default {
   props: {
+    coords: {},
     response: {},
   },
   components: {
     LMap,
     LTileLayer,
     LMarker,
-
   },
   data() {
     return {
@@ -45,6 +45,10 @@ export default {
   watch:{
     response:{
       handler() {
+        this.position = {
+          lat: this.coords.latitude,
+          lng: this.coords.longitude
+        };
         if(this.response.data.current_weather) {
           this.leafletIcon(this.response.data.current_weather.weathercode);
         }
@@ -216,10 +220,9 @@ export default {
 </script>
 
 <style scoped>
-.leaflet-grab {
+.leaflet-grab{
   cursor: auto;
 }
-
 .leaflet-dragging .leaflet-grab{
   cursor: move;
 }

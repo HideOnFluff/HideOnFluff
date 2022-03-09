@@ -9,6 +9,7 @@
           <leaflet
               @update:leafletCoords="getLeaflet"
               v-bind:response="response"
+              v-bind:coords="coordinates"
           ></leaflet>
           <small class="form-text text-muted">Click on the map to get exact coordinates. (Or input them manually on the fields below)</small>
         </b-row>
@@ -41,8 +42,8 @@ export default {
   data() {
     return {
       coordinates:{
-        latitude: '',
-        longitude: ''
+        latitude: null,
+        longitude: null
       },
       location:null,
       errorStr:null,
