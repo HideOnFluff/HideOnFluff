@@ -35,7 +35,7 @@ export default {
   watch:{
     changeData:{
       handler(value) {
-        //this.gradientGenerator(); //Disabled since now I have a library for the colors yet I'd like to reimplement this in the future.
+        //this.gradientGenerator(); ---------- Disabled since now I have a library for the colors yet I'd like to reimplement this in the future.
         this.data.datasets = [];
         if (value.chartType){
           this.chartDataGenerator(value.chartData.data.daily);
@@ -54,7 +54,7 @@ export default {
       deep: true
     },
   methods: {
-    // gradientGenerator(){
+    // gradientGenerator(){ --------- Disabled since now I have a library for the colors yet I'd like to reimplement this in the future.
     //   this.gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
     //   this.gradient.addColorStop(0, 'rgba(17, 130, 249, 0.9)')
     //   this.gradient.addColorStop(0.5, 'rgba(17, 130, 249, 0.25)');
@@ -68,7 +68,6 @@ export default {
             this.data.datasets.push({
               label: key,
               data: value[key],
-              fill: false
              // backgroundColor: this.gradient,
             })
           }
