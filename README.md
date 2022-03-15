@@ -50,9 +50,8 @@
   - [X] Show all selected data on hover (Chart.js Tooltip)
   - [X] Normalize date on X axis timestamps
   - [X] Normalize datasets' values on Y axis
+  
 
-
-- [ ] Add error alerts similar to 'Non geolocation access granted' on My Location button
 - [ ] **Refine, Debug & Comment code for easier understanding**
 
     
