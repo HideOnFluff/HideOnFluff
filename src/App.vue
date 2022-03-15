@@ -6,8 +6,7 @@
             <Coordinates
                 @update:coords="getCords"
                 v-bind:response="response"
-            ></Coordinates>
-            <div>
+            />
               <div class="scroll">
                 <chart
                     :width="3000"
@@ -15,14 +14,12 @@
                     v-bind:chartType="chartType"
                 />
               </div>
-
-            </div>
-            <Settings class="mt-4" @update:settings="getSettings"></Settings>
+            <Settings class="mt-4" @update:settings="getSettings"/>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
             <b-form-input v-model="query" readonly></b-form-input>
             <small class="form-text text-muted">You can copy this API URL into your application.</small>
-            <Checkboxes @update:parameters="getParameters"></Checkboxes>
+            <Checkboxes @update:parameters="getParameters"/>
         </b-col>
       </b-row>
     </b-container>
