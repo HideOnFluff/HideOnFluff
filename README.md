@@ -2,7 +2,7 @@
 
 ## Current State Preview: 
 
-![preview](https://i.imgur.com/VR5vG3u.png)
+![preview](https://i.imgur.com/eWZAbD2.png)
 
 ### To Do:
 
