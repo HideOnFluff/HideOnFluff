@@ -16,6 +16,7 @@
     "chartjs-plugin-colorschemes": "^0.4.0",
     "core-js": "^3.6.5",
     "leaflet": "^1.7.1",
+    "moment": "^2.29.1",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
     "vue-weathericons": "^0.0.3",

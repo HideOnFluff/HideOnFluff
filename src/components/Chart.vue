@@ -1,4 +1,5 @@
 <script>
+import moment from 'moment'
 import { Line } from 'vue-chartjs'
 export default {
   extends: Line,
@@ -15,6 +16,7 @@ export default {
         datasets:[],
       },
       options:{
+        tooltips: { mode: 'index', intersect: false, yAlign: 'center'},
         scales: {
           yAxes: [],
         },
@@ -35,7 +37,6 @@ export default {
   watch:{
     changeData:{
       handler(value) {
-        //this.gradientGenerator(); ---------- Disabled since now I have a library for the colors yet I'd like to reimplement this in the future.
         this.data.datasets = [];
         if (value.chartType){
           this.chartDataGenerator(value.chartData.data.daily);
@@ -43,7 +44,7 @@ export default {
           this.options.responsive = true;
         }
         else {
-          this.chartDataGenerator(value.chartData.data.hourly)
+          this.chartDataGenerator(value.chartData.data)
           this.chartUnitsGenerator(value.chartData.data["hourly_units"])
           this.options.responsive = false;
         }
@@ -54,21 +55,16 @@ export default {
       deep: true
     },
   methods: {
-    // gradientGenerator(){ --------- Disabled since now I have a library for the colors yet I'd like to reimplement this in the future.
-    //   this.gradient = this.$refs.canvas.getContext('2d').createLinearGradient(0, 0, 0, 450)
-    //   this.gradient.addColorStop(0, 'rgba(17, 130, 249, 0.9)')
-    //   this.gradient.addColorStop(0.5, 'rgba(17, 130, 249, 0.25)');
-    //   this.gradient.addColorStop(1, 'rgba(17, 130, 249, 0)');
-    // },
     chartDataGenerator(value){
       if (value){
-        this.data.labels = value.time;
-        for (const key in value) {
+        this.data.labels = this.dateFormating(value.hourly.time);
+        for (const key in value.hourly) {
           if (key !== 'time') {
             this.data.datasets.push({
               label: key,
-              data: value[key],
-             // backgroundColor: this.gradient,
+              data: value.hourly[key],
+              yAxisID: value.hourly_units[key],
+              fill: false
             })
           }
         }
@@ -94,6 +90,13 @@ export default {
           });
         }
       }
+    },
+    dateFormating(a){
+      let time = [];
+      for (const key in a) {
+        time[key] = moment(a[key]).format('MMMM Do, YYYY - hh:mm A');
+      }
+      return time;
     }
   },
   mounted(){

@@ -1,5 +1,10 @@
 <template>
-  <l-map style="height: 30vh" :zoom="zoom" :center="center" @click="coordsOnClick">
+  <l-map
+      style="height: 50vh"
+      :zoom="zoom"
+      :center="center"
+      :bounds="bounds"
+      @click="coordsOnClick">
     <l-tile-layer :url="url"></l-tile-layer>
     <l-marker
         v-if="position.lat && position.lng"
@@ -14,7 +19,7 @@
 
 <script>
 import {LMap, LTileLayer, LMarker} from 'vue2-leaflet';
-import { icon } from "leaflet";
+import { icon} from "leaflet";
 export default {
   props: {
     coords: {},
@@ -39,17 +44,22 @@ export default {
       }),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       zoom: 5,
-      center: [56.8796, 24.6032]
+      center: [56.8796, 24.6032],
+      bounds: null
     };
   },
   watch:{
     response:{
       handler() {
-        this.position = {
-          lat: this.coords.latitude,
-          lng: this.coords.longitude
-        };
+        if(this.position.lat !== this.coords.latitude || this.position.lng !== this.coords.longitude){
+          this.position = {
+            lat: this.coords.latitude,
+            lng: this.coords.longitude
+          }
+          this.center = this.position;
+        }
         if(this.response.data.current_weather) {
+          console.log(this.response.data.current_weather)
           this.leafletIcon(this.response.data.current_weather.weathercode);
         }
         else this.icon = icon({

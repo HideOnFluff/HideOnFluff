@@ -2,16 +2,12 @@
 
 ## Current State Preview: 
 
-![preview](https://i.imgur.com/7ExhFqO.png)
+![preview](https://i.imgur.com/VR5vG3u.png)
 
 ### To Do:
 
 - [X] **Coordinates**
-   - [X] **Leaflet**
-     - [X] Add map
-     - [X] Change coordinates on-map click
-     - [X] Add map marker on clicked spot
-     - [X] Change map marker depending on the weather data
+   - [x] Latitude and Longitude Inputs 
    - [x] Make GPS button replace Latitude and Longitude input values with its new coords
    - [x] Send data to app.vue
 
@@ -33,6 +29,15 @@
   - [X] Prepare request string
   - [x] Make the request (using axios)
 
+
+- [ ] **Leaflet**
+  - [X] Add map
+  - [X] Change coordinates on-map click
+  - [X] Add map marker on clicked spot
+  - [X] Change map marker depending on the weather data
+  - [ ] Show current weather popup on click (must show checked parameters with an accuracy of minutes)
+
+
 - [X] **Vue-Chart.js**
   - [X] Get data from request
   - [X] Format request data for the chart API
@@ -41,7 +46,10 @@
   - [X] Add switch for hourly / daily parameters
   - [X] Add units labeling
   - [X] Make chart Scrollable
-  - [X] Personalize chart
+  - [X] Personalize chart colors
+  - [X] Show all selected data on hover (Chart.js Tooltip)
+  - [X] Normalize date on X axis timestamps
+  - [X] Normalize datasets' values on Y axis
 
 
 - [ ] Add error alerts similar to 'Non geolocation access granted' on My Location button

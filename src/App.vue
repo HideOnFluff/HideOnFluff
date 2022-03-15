@@ -11,7 +11,6 @@
               <div class="scroll">
                 <chart
                     :width="3000"
-                    :height="400"
                     v-bind:chartData="response"
                     v-bind:chartType="chartType"
                 />

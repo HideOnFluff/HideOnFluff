@@ -11,6 +11,8 @@ Vue.component('l-map', LMap);
 Vue.component('l-tile-layer', LTileLayer);
 Vue.component('l-marker', LMarker);
 
+
+
 Vue.use(BootstrapVue);
 Vue.use(BootstrapVueIcons);
 Vue.config.productionTip = false;
