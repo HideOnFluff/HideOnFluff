@@ -30,12 +30,12 @@
   - [x] Make the request (using axios)
 
 
-- [ ] **Leaflet**
+- [X] **Leaflet**
   - [X] Add map
   - [X] Change coordinates on-map click
   - [X] Add map marker on clicked spot
   - [X] Change map marker depending on the weather data
-  - [ ] Show current weather popup on click (must show checked parameters with an accuracy of minutes)
+  - [X] Show current weather popup on click)
 
 
 - [X] **Vue-Chart.js**

@@ -85,33 +85,28 @@ export default {
     },
     popupChangeData(data){
       this.popupText = '';
-      console.log(data)
       if (data.current_weather){
         this.popupText = `<h6><b>Current Status</b></h6>
       <b>Time:</b> ${moment(data.current_weather.time).format('MMMM Do, YYYY - hh:mm A')}
-      <br><b>Status:</b> ${data.current_weather.weathercode}
       <br><b>Temperature:</b> ${data.current_weather.temperature}
       <br><b>Wind Direction:</b> ${data.current_weather.winddirection}
       <br><b>Wind Speed:</b> ${data.current_weather.windspeed}`;
 
         if (data.hourly){
-          let currentTime = data.hourly.time.indexOf(data.current_weather.time);
-          console.log(currentTime)
+          let index = data.hourly.time.indexOf(data.current_weather.time);
           this.popupText += `<hr><h6><b>Hourly</b></h6>`
-          for (const key in data.hourly) if(key !== 'time') this.popupText += `<b>${key}:</b> ${data.hourly[key][currentTime]} ${data.hourly_units[key]}<br>`
+          for (const key in data.hourly) if(key !== 'time') this.popupText += `<b>${key}:</b> ${data.hourly[key][index]} ${data.hourly_units[key]}<br>`
         }
         if (data.daily){
-          console.log(moment(data.current_weather.time).format('YYYY-MM-DD'))
-          let currentTime = data.daily.time.indexOf(moment(data.current_weather.time).format('YYYY-MM-DD'));
-          console.log(currentTime);
+          let index = data.daily.time.indexOf(moment(data.current_weather.time).format('YYYY-MM-DD'));
           this.popupText += `<hr><h6><b>Daily</b></h6>`
           for (const key in data.daily) if(key !== 'time'){
             switch (key){
-              case 'sunrise':this.popupText += `<b>sunrise:</b> ${moment(data.daily.sunrise[currentTime]).format('MMMM Do, YYYY - hh:mm A')}<br>`
+              case 'sunrise':this.popupText += `<b>sunrise:</b> ${moment(data.daily.sunrise[index]).format('MMMM Do, YYYY - hh:mm A')}<br>`
                 break;
-              case 'sunset': this.popupText += `<b>sunset:</b> ${moment(data.daily.sunset[currentTime]).format('MMMM Do, YYYY - hh:mm A')}<br>`
+              case 'sunset': this.popupText += `<b>sunset:</b> ${moment(data.daily.sunset[index]).format('MMMM Do, YYYY - hh:mm A')}<br>`
                 break;
-              default: this.popupText += `<b>${key}:</b> ${data.daily[key][currentTime]} ${data.daily_units[key]}<br>`
+              default: this.popupText += `<b>${key}:</b> ${data.daily[key][index]} ${data.daily_units[key]}<br>`
             }
 
           }
