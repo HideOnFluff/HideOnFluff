@@ -39,12 +39,12 @@ export default {
       handler(value) {
         this.data.datasets = [];
         if (value.chartType){
-          this.chartDataGenerator(value.chartData.data.daily);
+          this.chartDataGenerator(value.chartData.data.daily, value.chartData.data["daily_units"]);
           this.chartUnitsGenerator(value.chartData.data["daily_units"])
           this.options.responsive = true;
         }
         else {
-          this.chartDataGenerator(value.chartData.data)
+          this.chartDataGenerator(value.chartData.data.hourly, value.chartData.data["hourly_units"])
           this.chartUnitsGenerator(value.chartData.data["hourly_units"])
           this.options.responsive = false;
         }
@@ -55,17 +55,18 @@ export default {
       deep: true
     },
   methods: {
-    chartDataGenerator(value){
+    chartDataGenerator(value, units){
       if (value){
-        this.data.labels = this.dateFormating(value.hourly.time);
-        for (const key in value.hourly) {
+        this.data.labels = this.dateFormating(value.time);
+        for (const key in value) {
           if (key !== 'time') {
             this.data.datasets.push({
               label: key,
-              data: value.hourly[key],
-              yAxisID: value.hourly_units[key],
-              fill: false
-            })
+              data: value[key],
+              yAxisID: units[key],
+              fill: false,
+            }
+            )
           }
         }
       }
@@ -94,7 +95,8 @@ export default {
     dateFormating(a){
       let time = [];
       for (const key in a) {
-        time[key] = moment(a[key]).format('MMMM Do, YYYY - hh:mm A');
+        if (this.chartType) time[key] = moment(a[key]).format('MMMM Do, YYYY');
+        else time[key] = moment(a[key]).format('MMMM Do, YYYY - hh:mm A');
       }
       return time;
     }
