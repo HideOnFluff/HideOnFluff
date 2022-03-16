@@ -124,155 +124,64 @@ export default {
       let size = [41,41]
       let anchor = [21,41];
       let popupAnchor = [0,-40]
+      let iconURL
         switch(a){
           case 0:
-            this.icon = icon({
-            iconUrl: require("../assets/weatherMapIcons/wi-day-sunny.svg"),
-            iconSize: size,
-            iconAnchor: anchor,
-            iconRetinaUrl: null,
-            shadowUrl: null,
-            popupAnchor: popupAnchor
-          })
+            iconURL = require("../assets/weatherMapIcons/wi-day-sunny.svg")
             break;
           case 1:
           case 2:
           case 3:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-day-sunny-overcast.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-day-sunny-overcast.svg")
             break;
           case 48:
           case 45:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-fog.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-fog.svg")
             break;
           case 53:
           case 55:
           case 51:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-sprinkle.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-sprinkle.svg")
             break;
           case 56:
           case 57:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-snowflake-cold.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-snowflake-cold.svg")
             break;
           case 65:
           case 63:
           case 61:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-rain.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-rain.svg")
             break;
 
           case 67:
           case 66:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-rain-mix.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-rain-mix.svg")
             break;
           case 73:
           case 75:
           case 71:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-snow.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-snow.svg")
             break;
-
           case 77:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-snow-wind.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-snow-wind.svg")
             break;
           case 81:
           case 82:
           case 80:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-storm-showers.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-storm-showers.svg")
             break;
           case 86:
           case 85:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-showers.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-showers.svg")
             break;
           case 95:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-thunderstorm.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-thunderstorm.svg")
+
             break;
           case 99:
           case 96:
-            this.icon = icon({
-              iconUrl: require("../assets/weatherMapIcons/wi-hail.svg"),
-              iconSize: size,
-              iconAnchor: anchor,
-              iconRetinaUrl: null,
-              shadowUrl: null,
-              popupAnchor: popupAnchor
-            })
+            iconURL = require("../assets/weatherMapIcons/wi-hail.svg")
             break;
-
           default:
             this.icon = icon({
               iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
@@ -282,8 +191,16 @@ export default {
               iconAnchor: [12.5,41],
               popupAnchor: popupAnchor
             })
-
+            return;
         }
+      this.icon = this.icon = icon({
+        iconUrl: iconURL,
+        iconSize: size,
+        iconAnchor: anchor,
+        popupAnchor: popupAnchor,
+        shadowUrl: null,
+        iconRetinaUrl: null
+      })
       }
   }
 }
