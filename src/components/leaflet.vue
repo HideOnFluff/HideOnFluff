@@ -11,7 +11,7 @@
         :zIndexOffset="20"
         :lat-lng.sync="position"
         :icon="icon"
-        @change="openPopup"
+        :label="popupText"
     >
       <l-popup
           :content="popupText"
@@ -80,9 +80,6 @@ export default {
     deep: true
   },
   methods: {
-    openPopup (layer) {
-      layer.openPopup()
-    },
     popupChangeData(data){
       this.popupText = '';
       if (data.current_weather){
@@ -122,6 +119,7 @@ export default {
     leafletIcon(a){
       let size = [41,41]
       let anchor = [21,41];
+      let popupAnchor = [0,-40]
         switch(a){
           case 0:
             this.icon = icon({
@@ -129,7 +127,8 @@ export default {
             iconSize: size,
             iconAnchor: anchor,
             iconRetinaUrl: null,
-            shadowUrl: null
+            shadowUrl: null,
+            popupAnchor: popupAnchor
           })
             break;
           case 1:
@@ -140,7 +139,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 48:
@@ -150,7 +150,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 53:
@@ -161,7 +162,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 56:
@@ -171,7 +173,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 65:
@@ -182,7 +185,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
 
@@ -193,7 +197,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 73:
@@ -204,7 +209,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
 
@@ -214,7 +220,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 81:
@@ -225,7 +232,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 86:
@@ -235,7 +243,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 95:
@@ -244,7 +253,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
           case 99:
@@ -254,7 +264,8 @@ export default {
               iconSize: size,
               iconAnchor: anchor,
               iconRetinaUrl: null,
-              shadowUrl: null
+              shadowUrl: null,
+              popupAnchor: popupAnchor
             })
             break;
 
@@ -265,6 +276,7 @@ export default {
               shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
               iconSize: [25,41],
               iconAnchor: [12.5,41],
+              popupAnchor: popupAnchor
             })
 
         }
