@@ -116,16 +116,16 @@ export default {
      }
       else this.popupText = "turn on current weather to display data"
     },
-    coordsOnClick(e) {
-      this.$emit('update:leafletCoords', e.latlng);
-      this.position = e.latlng;
+    coordsOnClick(mapCoords) {
+      this.$emit('update:leafletCoords', mapCoords.latlng);
+      this.position = mapCoords.latlng;
     },
-    leafletIcon(a){
+    leafletIcon(weathercode){
       let size = [41,41]
       let anchor = [21,41];
       let popupAnchor = [0,-40]
       let iconURL
-        switch(a){
+        switch(weathercode){
           case 0:
             iconURL = require("../assets/weatherMapIcons/wi-day-sunny.svg")
             break;
