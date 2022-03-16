@@ -6,6 +6,7 @@
       @click="coordsOnClick">
     <l-tile-layer :url="url"/>
     <l-marker
+        ref="marker"
         v-if="position.lat && position.lng"
         visible
         :zIndexOffset="20"
@@ -14,6 +15,7 @@
         :label="popupText"
     >
       <l-popup
+          ref="popup"
           :content="popupText"
       />
     </l-marker>
@@ -57,6 +59,7 @@ export default {
   watch:{
     response:{
       handler(value) {
+        this.$refs.marker.mapObject.openPopup()
         this.popupChangeData(value.data);
         if(this.position.lat !== this.coords.latitude || this.position.lng !== this.coords.longitude){
           this.position = {
@@ -74,6 +77,7 @@ export default {
           shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
           iconSize: [25,41],
           iconAnchor: [12.5,41],
+          popupAnchor: [0,-40]
         })
       }
     },
