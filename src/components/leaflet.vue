@@ -67,6 +67,7 @@ export default {
             lng: this.coords.longitude
           }
           this.center = this.position;
+          this.zoom = 8;
         }
         if(value.data.current_weather) {
           this.leafletIcon(value.data.current_weather.weathercode);

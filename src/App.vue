@@ -14,6 +14,9 @@
                     v-bind:chartType="chartType"
                 />
               </div>
+          <b-alert v-model="showDismissibleAlert" variant="danger" dismissible>
+            Please, add coordinates to update the data.
+          </b-alert>
             <Settings class="mt-4" @update:settings="getSettings"/>
             <hr>
             <label>API URL (<a v-bind:href="query" target="_blank">Open in new tab</a>)</label>
@@ -53,7 +56,8 @@ export default {
         }
       },
       chartType: null,
-      response: {}
+      response: {},
+      showDismissibleAlert: false,
     }
 
   },
@@ -77,8 +81,9 @@ export default {
                 if (this.watching.settings[key]) this.query += `&${key}=${this.watching.settings[key]}`;
               }
             }
+            this.showDismissibleAlert = false;
           }
-          else console.log('im watching but I need both coords')
+          else this.showDismissibleAlert = true;
       },
       deep: true
     },
